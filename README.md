@@ -1,5 +1,6 @@
 # 5 Dominant Colors Determination
 Full-stack web application which purpose is to determine 5 dominant colors on the passed image with selected parameters
+
 ![image](https://github.com/Chatyis/5-Dominant-Colors-Determination/assets/32648007/f4042bbf-411f-48c7-8310-9062f982b9dd)
 
 ## Algorithm
