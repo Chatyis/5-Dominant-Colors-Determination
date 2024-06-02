@@ -1,7 +1,7 @@
 # 5 Dominant Colors Determination
 Full-stack web application which purpose is to determine 5 dominant colors on the passed image with selected parameters
 
-![image](https://github.com/Chatyis/5-Dominant-Colors-Determination/assets/32648007/f4042bbf-411f-48c7-8310-9062f982b9dd)
+![Screenshot from 2024-06-02 21-40-25](https://github.com/Chatyis/5-Dominant-Colors-Determination/assets/32648007/d783763d-551d-46d7-aee0-10c7a19657d9)
 
 ## Algorithm
 Algorithm was based on the: _Y. Chang and N. Mukai, Color Feature Based Dominant Color Extraction, IEEE Access, vol. 10, pp. 93055-93061, 2022, doi: 10.1109/ACCESS.2022.3202632._ With some changes applied
