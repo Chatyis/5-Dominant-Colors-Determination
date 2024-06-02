@@ -20,7 +20,7 @@ export class AppComponent {
     applyRag: [false],
     ragThreshold: ['16', [Validators.required, Validators.min(1), Validators.max(32)]]
   });
-  protected currPath: string | ArrayBuffer = '../assets/Red_eyed_tree_frog_edit2.jpg';
+  protected currPath: string | ArrayBuffer = '';
   protected rgbValues: DominantColors;
   protected error: HttpErrorResponse;
   protected isResponseLoading = false;
@@ -29,7 +29,7 @@ export class AppComponent {
     private cdr: ChangeDetectorRef,
     private restApiService: RestApiService) {
     this.toggleParameters(false);
-    
+
     this.form.controls.areCustomParametersApplied.valueChanges.subscribe(changes => {
       this.toggleParameters(changes);
     });
@@ -47,11 +47,11 @@ export class AppComponent {
 		this.form.controls.file.setValue(file);
 
 		reader.onload = (_event) => {
-      this.currPath = reader.result; 
+      this.currPath = reader.result;
       this.cdr.markForCheck();
     }
   }
-  
+
   protected submit(): void {
     const formData = new FormData()
     this.isResponseLoading = true;

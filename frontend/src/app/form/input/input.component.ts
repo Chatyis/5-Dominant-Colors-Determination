@@ -10,6 +10,9 @@ import { InputType } from 'src/app/models/form.model';
 export class InputComponent extends ControlAbstract {
   @Input() placeholder: string = "";
   @Input() type: InputType = InputType.number;
+  @Input() min: number = 1;
+  @Input() max: number;
+
   readonly InputType = InputType;
 
   get isInvalid(): boolean {

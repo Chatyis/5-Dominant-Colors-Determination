@@ -1,35 +1,45 @@
-<div class="relative text-sm text-gray-900 h-screen w-screen flex items-center justify-center bg-gray-800">
-  <div class="bg-white flex p-5 rounded-sm">
-    <div class="flex justify-center items-center bg-green-400">
-      <img class="w-96 h-96 bg-blue-400" alt="MISSING IMAGE" [src]="currPath" />
+<div class="h-screen flex justify-center items-center">
+  <mat-card>
+    <div class=" flex p-5 rounded-sm">
+      <div class="flex justify-center items-center relative">
+        @if (currPath) {
+          <img class="w-[420px] h-[420px] bg-blue-400" alt="MISSING IMAGE" [src]="currPath"/>
+        } @else {
+          <div class="w-[420px] h-[420px] bg-black opacity-20 border-dashed border-2 rounded-2xl">
+          </div>
+          <div class="absolute">
+            <button (click)="fileInput.click()" mat-flat-button>Select image...</button>
+            <input #fileInput (change)="onImageUpload($event)" accept="image/*" class="hidden" id="img" name="img"
+                   type="file">
+          </div>
+        }
+      </div>
+      <div class="flex items-center justify-between flex-col ml-5">
+        <div class="w-full p-2 mb-2 mat-app-background rounded-md">
+          <p class="w-full !mb-0">{{ form.controls.file.value.name }}</p>
+        </div>
+        <app-image-input (uploaded)="onImageUpload($event)" class="mb-2">Add image...</app-image-input>
+        <mat-divider class="w-full"></mat-divider>
+        <app-radio [control]="form.controls.areCustomParametersApplied" class="w-full"
+                   label="Custom parameters setting"></app-radio>
+        <app-input [control]="form.controls.clusterAmount" class="w-full" placeholder="Clusters amount"></app-input>
+        <app-input [control]="form.controls.maximumFileSize" [max]="1000" class="w-full"
+                   placeholder="Maximum file size"></app-input>
+        <mat-divider class="w-full"></mat-divider>
+        <app-radio [control]="form.controls.applyRag" class="w-full" label="Apply RAG"></app-radio>
+        <app-input [control]="form.controls.ragThreshold" [max]="32" class="w-full"
+                   placeholder="RAG threshold"></app-input>
+        <button (click)="submit()"
+                [disabled]="form.controls.file.value.name==='Please upload file...'"
+                color="primary"
+                mat-raised-button>Calculate
+        </button>
+      </div>
     </div>
-    <div class="flex items-center justify-between flex-col ml-5">
-      <div class="bg-blue-100 w-full p-1 mb-2">
-        <p class="w-full">{{form.controls.file.value.name}}</p>
-      </div>
-      <app-image-input (uploaded)="onImageUpload($event)">Add image...</app-image-input>
-      <p>Custom parameters setting</p>
-      <div class="flex gap-3">
-        <app-radio name="customParameters" [control]="form.controls.areCustomParametersApplied" label="Yes"
-          [value]="true"></app-radio>
-        <app-radio name="customParameters" [control]="form.controls.areCustomParametersApplied" label="No"
-          [value]="false"></app-radio>
-      </div>
-      <app-input label="Clusters amount (1-100)" [control]="form.controls.clusterAmount"></app-input>
-      <app-input label="Maximum file size (1-1000)" [control]="form.controls.maximumFileSize"></app-input>
-      <p>Apply RAG</p>
-      <div class="flex gap-3">
-        <app-radio name="applyRag" [control]="form.controls.applyRag" label="Yes" [value]="true"></app-radio>
-        <app-radio name="applyRag" [control]="form.controls.applyRag" label="No" [value]="false"></app-radio>
-      </div>
-      <app-input label="RAG threshold (1-32)" [control]="form.controls.ragThreshold"></app-input>
-      <button [disabled]="form.controls.file.value.name==='Please upload file...'"
-        class="bg-blue-600 text-white p-1 mt-2 w-full font-semibold mx-4 hover:bg-blue-400 disabled:hover:bg-blue-600 disabled:opacity-55 box-border"
-        (click)="submit()">Calculate</button>
-    </div>
-  </div>
-  <app-results *ngIf="!!rgbValues || error || isResponseLoading" class="absolute top-24 l-0 r-0" [error]="error"
-    [isResponseLoading]="isResponseLoading" [results]="rgbValues"></app-results>
-</div>
+    <app-results *ngIf="!!rgbValues || error || isResponseLoading" [error]="error"
+                 [isResponseLoading]="isResponseLoading"
+                 [results]="rgbValues" class="absolute top-24 l-0 r-0"></app-results>
 
+  </mat-card>
+</div>
 <router-outlet></router-outlet>

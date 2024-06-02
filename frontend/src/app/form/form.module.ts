@@ -5,11 +5,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ImageInputComponent } from './image-input/image-input.component';
 import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
+import { MatButton } from "@angular/material/button";
+import { MatSlider, MatSliderThumb } from "@angular/material/slider";
+import { MatCheckbox } from "@angular/material/checkbox";
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButton,
+    MatSlider,
+    MatSliderThumb,
+    MatCheckbox
   ],
   declarations: [
     ImageInputComponent,
@@ -22,4 +29,5 @@ import { RadioComponent } from './radio/radio.component';
     RadioComponent,
   ]
 })
-export class FormModule { }
+export class FormModule {
+}
